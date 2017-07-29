@@ -3,5 +3,9 @@ Rails.application.routes.draw do
   root "home#index"
   delete "/", to: "home#logout"
   post "/", to: "home#login"
-  resources :events, only: [:index]
+  post "/events", to: "events#update"
+  resources :events, only: [:index] do 
+  	resources :attendees, only: [:index]
+
+  end
 end

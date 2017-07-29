@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  email: MyString
+  attending: false
+  digest: MyString
+  sent_at: 2017-07-29 19:15:26
+  rsvp_at: 2017-07-29 19:15:26
+  notes: MyText
+
+two:
+  name: MyString
+  email: MyString
+  attending: false
+  digest: MyString
+  sent_at: 2017-07-29 19:15:26
+  rsvp_at: 2017-07-29 19:15:26
+  notes: MyText

@@ -1,6 +1,10 @@
 <% provide(:title, "Events") %>
 <h1>Events</h1>
+<div class = "row">
+	<div class = "col-md-4">
+		<%= link_to "Update database", events_path, method: "post", class: "btn btn-lg btn-primary" %>
 
+</div>
 <br>
 <table class ="table">
 	<thead>
@@ -18,11 +22,11 @@
 	<% @events.each do |event| %>
 		<tr>
 			<td><%= event.id %></td>
-			<td><%= link_to event.name, event.url %></td>
+			<td><%= link_to event.name, event_attendees_path(event_id: event.id) %> </td>
 			<td><%= event.time %></td>
 			<td><%= event.capacity %></td>
 			<td>haha</td>
-			<td><%= link_to "Send email", "#"%> </td>
+			<td><%= link_to "Open page", event.url %></td>
 		</tr>
 	<% end %>
 	</tbody>
