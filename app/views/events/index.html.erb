@@ -1,2 +1,31 @@
 <% provide(:title, "Events") %>
 <h1>Events</h1>
+
+<br>
+<table class ="table">
+	<thead>
+		<tr>
+			<th>No</th>
+			<th>Name</th>
+			<th>Time</th>
+			<th>Registered</th>
+			<th>Confirmed</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+
+	<tbody>
+	<% @events.each do |event| %>
+		<tr>
+			<td><%= event.id %></td>
+			<td><%= link_to event.name, event.url %></td>
+			<td><%= event.time %></td>
+			<td><%= event.capacity %></td>
+			<td>haha</td>
+			<td><%= link_to "Send email", "#"%> </td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>
+
+
