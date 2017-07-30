@@ -6,7 +6,7 @@ Dear <%= @attendee.name %>,
 
 Click one of the buttons below:
 If you are attending:
-https://eventbrite-rsvp/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=true
+https://eventbrite-rsvp.herokuapp.com/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=true
 
 If you are not attending:
-https://eventbrite-rsvp/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=false
+https://eventbrite-rsvp.herokuapp.com/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=false
