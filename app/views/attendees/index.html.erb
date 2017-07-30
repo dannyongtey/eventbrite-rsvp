@@ -4,6 +4,7 @@
 	<div class = "col-md-6">
 		<%= link_to "Update database", events_path, method: "post", class: "btn btn-lg btn-primary" %>
 		<%= link_to "Send Email/RSVP", event_email_path(event_id: params[:event_id]), class: "btn btn-lg" %>
+		<%= link_to "Disable RSVP (BETA)", event_disable_path(event_id: params[:event_id]),class: "btn btn-lg" %>
 	</div>
 	<div class = "md-offset-1 col-md-3">
 		<p>Total number: <%= @attendees.count %></p>

@@ -50,6 +50,18 @@ class AttendeesController < ApplicationController
 		
 	end
 
+	def disable
+		event = Event.find(params[:event_id])
+		if event
+			attendees = event.attendees.all
+			attendees.each do |attendee|
+				token = SecureRandom::urlsafe_base64
+				attendee.update_attributes(digest: token)
+			end
+		end
+		redirect_to event_attendees_path(event_id: params[:event_id])
+	end
+
 
 	private
 	def filter_target(parameter, event_id)
