@@ -35,13 +35,18 @@ class AttendeesController < ApplicationController
 			attendee = event.attendees.find_by(email: params[:email])
 			if attendee && attendee.digest == params[:token] && params[:status] == "true"
 				attendee.update_attributes(attending: true)
+				flash[:success] = "You have responded successfully"
+				redirect_to root_path(message: true)
 			elsif attendee && attendee.digest == params[:token] && params[:status] == "false"
 				attendee.update_attributes(attending: false)
+				flash[:success] = "You have responded successfully"
+				redirect_to root_path(message: false)
 			else
 				flash[:danger] = "There was something wrong with the RSVP process."
+				redirect_to root_path(message: "Error")
 			end
 		end
-		redirect_to root_path
+		
 	end
 
 

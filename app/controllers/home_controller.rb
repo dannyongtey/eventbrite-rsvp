@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 	before_action :check_authentication, only: :index
 
 	def index
-
+		@message = params[:message]
 	end
 
 	def login

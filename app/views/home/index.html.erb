@@ -1,8 +1,20 @@
-<h1>Login</h1>
-<br>
-<%= form_for(:login, url: root_path) do |f| %>
-	<%= f.label :password %>
-	<%= f.password_field :password, class: "form-control" %>
+
+<% if @message.nil? %>
+	<h1>Login</h1>
 	<br>
-	<%= f.submit "Log in", class: "btn btn-primary" %>
+	<%= form_for(:login, url: root_path) do |f| %>
+		<%= f.label :password %>
+		<%= f.password_field :password, class: "form-control" %>
+		<br>
+		<%= f.submit "Log in", class: "btn btn-primary" %>
+	<% end %>
+<% elsif @message == "true"%>
+		<h1>Thank you!</h1>
+		<p>Hope to see you soon!</p>
+<% elsif @message == "false" %>
+		<h1>Thank you for telling us!</h1>
+		<p>Thanks for informing us that you could not come to the event. Your registration will still be valid, and you can change your RSVP status anytime before the event.</p>
+<% else %>
+	<h1>Something bad happened</h1>
+	<p>Unfortuantely, we cannot identify the error. Please try again later.</p>
 <% end %>
