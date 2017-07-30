@@ -7,6 +7,6 @@ Dear <%= @attendee.name %>,
 
 <p>Click one of the buttons below:</p>
 
-<a class="btn" href="https://eventbrite-rsvp.herokuapp.com/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=true" target="_blank">I am attending</a>
+<a class="button blue" href="https://eventbrite-rsvp.herokuapp.com/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=true" target="_blank">I am attending</a>
 
-<a class="btn" href="https://eventbrite-rsvp.herokuapp.com/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=false" target="_blank">I am not attending</a>
+<a class="button red" href="https://eventbrite-rsvp.herokuapp.com/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=false" target="_blank">I am not attending</a>
