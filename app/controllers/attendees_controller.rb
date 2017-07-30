@@ -1,4 +1,5 @@
 class AttendeesController < ApplicationController
+	skip_before_action :authenticated?, only: :update
 	def index
 		@attendees = Event.find(params[:event_id]).attendees.all
 	end
