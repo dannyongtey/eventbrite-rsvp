@@ -24,7 +24,7 @@
 			<td><%= link_to event.name, event_attendees_path(event_id: event.id) %> </td>
 			<td><%= event.time %></td>
 			<td><%= event.capacity %></td>
-			<td>haha</td>
+			<td><%= event.attendees.where.not(attending: nil).count %></td>
 			<td><%= link_to "Open page", event.url %></td>
 		</tr>
 	<% end %>
