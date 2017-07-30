@@ -39,7 +39,7 @@ class AttendeesController < ApplicationController
 				flash[:success] = "You have responded successfully"
 				redirect_to landing_path(message: true)
 			elsif attendee && attendee.digest == params[:token] && params[:status] == "false"
-				attendee.update_attributes(attending: false)
+				attendee.update_attributes(attending: false, email: params[:email], event_uid: params[:event_uid], token: params[:token])
 				flash[:success] = "You have responded successfully"
 				redirect_to landing_path(message: false)
 			else

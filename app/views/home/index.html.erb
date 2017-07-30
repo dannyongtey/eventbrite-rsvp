@@ -1,4 +1,4 @@
-
+<% if @message.nil? %>
 	<h1>Login</h1>
 	<br>
 	<%= form_for(:login, url: root_path) do |f| %>
@@ -7,3 +7,19 @@
 		<br>
 		<%= f.submit "Log in", class: "btn btn-primary" %>
 	<% end %>
+<% elsif @message == "true"%>
+		<h1>Thank you!</h1>
+		<p>Hope to see you soon!</p>
+<% elsif @message == "false" %>
+		<h1>Thank you for telling us!</h1>
+		<p>Thanks for informing us that you could not come to the event. Your registration will still be valid, and you can change your RSVP status anytime before the event.</p>
+		<p>Meanwhile, we appreciate if you can tell us why you could not come to the event: </p>
+		<%= form_for(:message, url: landing_path) do |f| %>
+		<%= f.label :reason %>
+		<%= f.text_area :content, placeholder: "Please tell us why", class: "col-md-8" %>
+		<%= f.submit "Submit" %>
+		<% end %>
+<% else %>
+	<h1>Something bad happened</h1>
+	<p>Unfortuantely, we cannot identify the error. Please try again later.</p>
+<% end %>
