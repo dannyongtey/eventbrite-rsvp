@@ -12,7 +12,7 @@ class AttendeesController < ApplicationController
 		target_attendees = filter_target(params[:send], params[:event_id])
 		event = Event.find(params[:event_id])
 		subject = params[:send][:subject]
-		message = params[:send][:message]
+		message = params[:send][:content]
 		if params[:send][:type] == "RSVP"
 			target_attendees.each do |attendee|
 				token = SecureRandom::urlsafe_base64

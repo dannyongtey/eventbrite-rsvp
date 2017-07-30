@@ -1,12 +1,12 @@
 <h1>Confirm your attendance for <%= @event.name %></h1>
 
-<pre>  
+<p>
 Dear <%= @attendee.name %>,
-
+</p>
 <%= @message %> 
-</pre>
+
 <p>Click one of the buttons below:</p>
 
-<a class="btn" href="localhost:3000/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=true" target="_blank">I am attending</a>
+<a class="btn" href="https://eventbrite-rsvp/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=true" target="_blank">I am attending</a>
 
-<a class="btn" href="localhost:3000/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=false" target="_blank">I am not attending</a>
+<a class="btn" href="https://eventbrite-rsvp/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=false" target="_blank">I am not attending</a>
