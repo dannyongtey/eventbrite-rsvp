@@ -20,7 +20,7 @@
 	<tbody>
 	<% @events.each_with_index do |event, index| %>
 		<tr>
-			<td><%= index %></td>
+			<td><%= index+1 %></td>
 			<td><%= link_to event.name, event_attendees_path(event_id: event.id) %> </td>
 			<td><%= event.time %></td>
 			<td><%= event.capacity %></td>
