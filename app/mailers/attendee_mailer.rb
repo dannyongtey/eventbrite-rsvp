@@ -10,7 +10,7 @@ class AttendeeMailer < ApplicationMailer
     @event = event
     @message = message
     if subject.empty?
-    	mail to: attendee.email, subject: "Confirm your attendance for #{event_name}"
+    	mail to: attendee.email, subject: "Confirm your attendance for #{@event.name}"
   	else
   		mail to: attendee.email, subject: subject
   	end

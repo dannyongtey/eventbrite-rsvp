@@ -1,9 +1,12 @@
 class HomeController < ApplicationController
-	skip_before_action :authenticated?, only: [:index, :login]
+	skip_before_action :authenticated?, only: [:index, :login, :landing]
 	before_action :check_authentication, only: :index
 
 	def index
-		@message = params[:message]
+	end
+
+	def landing
+		
 	end
 
 	def login

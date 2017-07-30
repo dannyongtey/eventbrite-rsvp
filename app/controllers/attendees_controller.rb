@@ -36,14 +36,14 @@ class AttendeesController < ApplicationController
 			if attendee && attendee.digest == params[:token] && params[:status] == "true"
 				attendee.update_attributes(attending: true)
 				flash[:success] = "You have responded successfully"
-				redirect_to root_path(message: true)
+				redirect_to landing_path(message: true)
 			elsif attendee && attendee.digest == params[:token] && params[:status] == "false"
 				attendee.update_attributes(attending: false)
 				flash[:success] = "You have responded successfully"
-				redirect_to root_path(message: false)
+				redirect_to landing_path(message: false)
 			else
 				flash[:danger] = "There was something wrong with the RSVP process."
-				redirect_to root_path(message: "Error")
+				redirect_to landing_path(message: "Error")
 			end
 		end
 		
@@ -53,29 +53,41 @@ class AttendeesController < ApplicationController
 	private
 	def filter_target(parameter, event_id)
 		event = Event.find(event_id)
-		attending_true = "haha"
-		attending_false = "haha"
-		response = "haha"
-		token = "haha"
-		if parameter[:attending] == "1"
-			attending_true = true
-		end
-		if parameter[:not_attending] == "1"
-			atteding_false = false
-		end
-
-		if parameter[:no_response] == "1"
-			response = nil
-		end
-
-		if parameter[:not_sent] == "1"
-			token = nil
-		end
-
 		if parameter[:all] == "1"
-			event.attendees.all
+			return event.attendees.all
 		else
+			arr1 = []
+			arr2 = []
+			arr3 = []
+			arr4 = []
+=begin
+				query_string = "attending= ? OR attending= ? OR (attending= ? AND digest IS NOT ?) OR digest= ?"
+				attending_true = "haha"
+				attending_false = "haha"
+				responding = "haha"
+				response = "haha"
+				token = "haha"
+=end
+			if parameter[:attending] == "1"
+				arr1 = event.attendees.where(attending: true)
+			end
+			if parameter[:not_attending] == "1"
+				arr2 = event.attendees.where(attending: false)
+			end
+
+			if parameter[:no_response] == "1"
+				arr3 = event.attendees.where(attending: nil).where.not(digest: nil)
+			end
+
+			if parameter[:not_sent] == "1"
+				arr4 = event.attendees.where(attending: nil, digest: nil)
+			end
+			list = (arr1+arr2+arr3+arr4).uniq
+			return list
 		end
+		
+
+
 
 
 	end
