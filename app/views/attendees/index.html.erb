@@ -3,27 +3,7 @@
 <div class = "row">
 	<div class = "col-md-12">
 		<%= link_to "Update database", events_path, method: "post", class: "btn btn-lg btn-primary" %>
-	<%= form_for(:send, url: event_attendees_path(event_id: params["event_id"])) do |f| %>
-		<%= f.label :Type %>
-		<br>
-		<%= label :type_RSVP, "RSVP" %>
-		<%= f.radio_button :type, "RSVP" %>
-		<%= label :type_email, "Email" %>
-		<%= f.radio_button :type, "email" %>
-		<br>
-		<%= f.label :target %>
-		<br></br>
-		<%= label :checkbox_target, "All" %>
-		<%= f.check_box :target, {}, "all" %>
-		<%= label :checkbox_target, "Attending" %>
-		<%= f.check_box :target, {}, "attending" %>
-		<%= label :checkbox_target, "Not Attending" %>
-		<%= f.check_box :target, {}, "not_attending" %>
-		<%= label :checkbox_target, "Not RSVPed" %>
-		<%= f.check_box :target, {}, "new" %>
-
-		<%= f.submit "Send", class: "btn btn-primary" %>
-	<% end %>
+		<%= link_to "Send Email/RSVP", event_email_path(event_id: params[:event_id]), class: "btn btn-lg" %>
 	</div>
 </div>
 <br>
@@ -44,8 +24,10 @@
 			<td><%= index+1 %></td>
 			<td><%= attendee.name %></td>
 			<td><%= attendee.email %></td>
-			<% if attendee.attending.nil? %>
+			<% if attendee.attending.nil? && attendee.digest.nil? %>
 			<td>Not sent</td>
+			<% elsif attendee.digest && attendee.attending.nil?%>
+			<td>Not RSVPed</td>
 			<% else %>
 			<td><%= attendee.attending? %></td>
 			<% end %>

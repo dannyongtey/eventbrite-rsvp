@@ -35,7 +35,6 @@ class Event < ApplicationRecord
 			live_events = Event.where(inactive: false)
 			live_events.each do |event|
 				latest_attendees = caller.attendees(event.uid)
-				debugger
 				latest_attendees.each do |attendee|
 					name = attendee["profile"]["name"]
 					email = attendee["profile"]["email"]

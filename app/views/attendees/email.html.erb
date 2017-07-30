@@ -1,0 +1,43 @@
+<% provide(:title, "Email to Attendees") %>
+
+	<h3>Send email</h3>
+
+<br>
+<div class = "row">
+	<div class = "col-md-12">
+		<%= form_for(:send, url: event_send_path) do |f| %>
+		<%= f.label :Type %>
+		<br>
+		<%= label :type_RSVP, "RSVP" %>
+		<%= f.radio_button :type, "RSVP", checked: true %>
+		<%= label :type_email, "Email" %>
+		<%= f.radio_button :type, "email" %>
+		<br>
+		<br>
+		<%= f.label :target %>
+		<br>
+		<%= label :checkbox_target, "All" %>
+		<%= f.check_box :all %>
+		<%= label :checkbox_target, "Attending" %>
+		<%= f.check_box :attending %>
+		<%= label :checkbox_target, "Not Attending" %>
+		<%= f.check_box :not_attending %>
+		<%= label :checkbox_target, "Not RSVPed" %>
+		<%= f.check_box :no_response %>
+		<%= label :checkbox_target, "Not sent" %>
+		<%= f.check_box :not_sent %>
+		<br><br>
+		<div class = "col-md-12">
+			<%= f.text_area :subject, placeholder: "Your subject here", class: "col-md-6" %>
+		</div>
+		<div class = "col-md-12">
+			<%= f.text_area :content, placeholder: "Your message here", class: "col-md-12 textplace" %>
+		</div>
+		<br><br><br>
+		<br><br>
+
+		<%= f.submit "Send", class: "btn btn-primary",  data: { confirm: 'Are you sure? This action cannot be undone!' } %>
+	<% end %>
+	</div>
+</div>
+<br>

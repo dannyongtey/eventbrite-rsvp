@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post "/events", to: "events#update"
   resources :events, only: [:index] do 
   	resources :attendees, only: [:index]
-
+  	get "/email", to: "attendees#email", as: :email
+  	post "/email", to: "attendees#sending", as: :send
+  	get "/rsvp", to: "attendees#update", as: :update
   end
 end
