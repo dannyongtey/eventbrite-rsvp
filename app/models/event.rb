@@ -41,7 +41,7 @@ class Event < ApplicationRecord
 					ticket_type = attendee["ticket_class_name"]
 					uid = attendee["id"].to_i
 					if event.attendees.exists?(uid: uid)
-						event.attendees.find_by(uid: uid).update_attributes(name: name, email: email)
+						event.attendees.find_by(uid: uid).update_attributes(name: name, email: email, tickettype: ticket_type)
 					else
 						event.attendees.create(name: name, email: email, uid: uid, tickettype: ticket_type)
 					end
