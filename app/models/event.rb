@@ -48,7 +48,13 @@ class Event < ApplicationRecord
 
 				end
 				db_uid = event.attendees.pluck(:uid)
-				latest_uid = latest_attendees.map {|attendee| attendee["id"].to_i }
+				latest_uid = latest_attendees.map do |attendee| 
+					if attendee["cancelled"]==false 
+						attendee["id"].to_i
+					else
+						next
+					end
+				end
 				cancelled_uid = db_uid - latest_uid
 				cancelled_uid.each do |uid|
 					event.attendees.find_by(uid: uid).destroy
@@ -60,6 +66,7 @@ class Event < ApplicationRecord
 			 #end
 
 		end
+
 	end
 
 	def self.convert_datetime(ori_datetime)
