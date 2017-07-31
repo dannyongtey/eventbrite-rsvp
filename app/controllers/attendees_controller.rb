@@ -1,5 +1,5 @@
 class AttendeesController < ApplicationController
-	skip_before_action :authenticated?, only: :update
+	skip_before_action :authenticated?, only: [:update, :explain]
 	def index
 		@attendees = Event.find(params[:event_id]).attendees.all
 	end
@@ -50,13 +50,29 @@ class AttendeesController < ApplicationController
 		
 	end
 
+	def explain
+		if params[:reason][:notes] && params[:reason][:email] && params[:reason][:token] && params[:reason][:event_uid]
+			if event = Event.find_by(uid: params[:reason][:event_uid])
+				if attendee = event.attendees.where(email: params[:reason][:email], digest: params[:reason][:token], attending: false).first
+					attendee.update_attributes(notes: params[:reason][:notes])
+				else
+					flash[:danger] = "Authentication error."
+				end
+			else 
+				flash[:danger] = "Authentication error."	
+			end
+		else
+			flash[:danger] = "Authentication error."
+		end
+			redirect_to landing_path
+	end 
+
 	def disable
 		event = Event.find(params[:event_id])
 		if event
 			attendees = event.attendees.all
 			attendees.each do |attendee|
-				token = SecureRandom::urlsafe_base64
-				attendee.update_attributes(digest: token)
+				attendee.update_attributes(digest: nil)
 			end
 		end
 		redirect_to event_attendees_path(event_id: params[:event_id])

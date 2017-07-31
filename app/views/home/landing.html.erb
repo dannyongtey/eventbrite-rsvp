@@ -1,1 +1,23 @@
-<h1>Thank you for telling us!</h1>
+
+<% if @message.nil? %>
+	<h1>Thank you for telling us!</h1>
+<% elsif @message == "true" 	%>
+		<h1>Thank you!</h1>
+		<p>Hope to see you soon!</p>
+<% elsif @message == "false" && @full_params[:email] && @full_params[:token] && @full_params[:event_uid] %>
+		<h1>Thank you for telling us!</h1>
+		<p>Thanks for informing us that you could not come to the event. Your registration will still be valid, and you can change your RSVP status anytime before the event.</p>
+		<p>Meanwhile, we appreciate if you can tell us why you could not come to the event: </p>
+		<%= form_for(:reason, url: landing_path) do |f| %>
+		<h3><%= f.label :message %></h3>
+		<br>
+		<%= f.text_area :notes, placeholder: "Please tell us why", class: "col-md-12" %>
+		<%= f.hidden_field :email, value: @full_params[:email] %>
+		<%= f.hidden_field :token, value: @full_params[:token] %>
+		<%= f.hidden_field :event_uid, value: @full_params[:event_uid] %>
+		<%= f.submit "Submit", class: "btn btn-primary" %>
+		<% end %>
+<% else %>
+	<h1>Something bad happened</h1>
+	<p>Unfortuantely, we cannot identify the error. Please try again later.</p>
+<% end %>
