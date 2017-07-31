@@ -38,12 +38,20 @@ class Event < ApplicationRecord
 				latest_attendees.each do |attendee|
 					name = attendee["profile"]["name"]
 					email = attendee["profile"]["email"]
+					ticket_type = attendee["ticket_class_name"]
 					uid = attendee["id"].to_i
 					if event.attendees.exists?(uid: uid)
 						event.attendees.find_by(uid: uid).update_attributes(name: name, email: email)
 					else
-						event.attendees.create(name: name, email: email, uid: uid)
+						event.attendees.create(name: name, email: email, uid: uid, tickettype: ticket_type)
 					end
+
+				end
+				db_uid = event.attendees.pluck(:uid)
+				latest_uid = latest_attendees.map {|attendee| attendee["id"].to_i }
+				cancelled_uid = db_uid - latest_uid
+				cancelled_uid.each do |uid|
+					event.attendees.find_by(uid: uid).destroy
 				end
 			end
 			 #attendees = caller.attendees(uid)

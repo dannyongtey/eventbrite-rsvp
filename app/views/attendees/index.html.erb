@@ -6,12 +6,18 @@
 		<%= link_to "Send Email/RSVP", event_email_path(event_id: params[:event_id]), class: "btn btn-lg" %>
 		<%= link_to "Disable RSVP (BETA)", event_disable_path(event_id: params[:event_id]),class: "btn btn-lg" %>
 	</div>
-	<div class = "md-offset-1 col-md-3">
+	<div class = "md-offset-1 col-md-2">
 		<p>Total number: <%= @attendees.count %></p>
 		<p>Coming: <%= @attendees.where(attending: true).count %></p>
 		<p>Not coming: <%= @attendees.where(attending: false).count %></p>
 		<p>Unconfirmed: <%= @attendees.where(attending: nil).count %></p>
 		<p>Unsent: <%= @attendees.where(digest: nil).count %></p>
+	</div>
+	<div class = "md-offset-1 col-md-2">
+	<h3>Coming attendees by ticket type</h3>
+	<% @attendees.pluck(:tickettype).uniq.each do |ticket_type| %>
+		<p><%= ticket_type %>: <%= @attendees.where(tickettype: ticket_type).where(attending: true).count %></p>
+	<% end %>
 	</div>
 </div>
 <br>
