@@ -12,6 +12,6 @@ Dear <%= @attendee.name %>,
 <a class="button red" href="https://eventbrite-rsvp.herokuapp.com/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=false" target="_blank">I am not attending</a>
 
 <p>If the buttons didn't work, please copy-paste the link below:</p>
-<p>If you are attending: <%= https://eventbrite-rsvp.herokuapp.com/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=true %></p>
+<p>If you are attending: https://eventbrite-rsvp.herokuapp.com/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=true</p>
 <br><br>
-<p>If you are not attending: <%= https://eventbrite-rsvp.herokuapp.com/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=false %></p>
+<p>If you are not attending: https://eventbrite-rsvp.herokuapp.com/events/<%= @event.id %>/rsvp?email=<%= @attendee.email %>&token=<%= @attendee.digest %>&event_uid=<%= @event.uid %>&status=false</p>
