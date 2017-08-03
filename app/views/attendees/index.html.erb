@@ -45,7 +45,13 @@
 			<% else %>
 			<td><%= attendee.attending? %></td>
 			<% end %>
-			<td><%= link_to "Send email", "mailto:#{attendee.email}" %> </td>
+			<td><%= link_to "Send email", "mailto:#{attendee.email}" %> /
+			<% if attendee.attending? %>
+				<%= link_to "Un-RSVP", "https://eventbrite-rsvp.herokuapp.com/events/#{@event.id}/rsvp?email=#{attendee.email}&token=#{attendee.digest}&event_uid=#{@event.uid}&status=false" %>
+			<% else %>
+				<%= link_to "RSVP", "https://eventbrite-rsvp.herokuapp.com/events/#{@event.id}/rsvp?email=#{attendee.email}&token=#{attendee.digest}&event_uid=#{@event.uid}&status=true" %>
+			<% end %>
+				</td>
 		</tr>
 	<% end %>
 	</tbody>
