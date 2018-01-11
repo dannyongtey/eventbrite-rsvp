@@ -2,22 +2,13 @@
 
 # Development for this extension will continue after I'm done with my latest project :)
 
-Current feature:
 
-* Ruby version
+* This application is originally developed for IT Society as many of our events are FOC and the sign-ups on Eventbrite often doesn't reflect the actual number of attendees that'll come.
 
-* System dependencies
+* Not yet ready for release as some functionalities are incomplete. 
 
-* Configuration
+If you'd like to use however, here are the steps:
 
-* Database creation
+1. Save into the environment variables eventbrite_oauth, access_password (for login)
+2. Change the email in application emailer file to your own email
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
