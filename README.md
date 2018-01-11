@@ -1,9 +1,8 @@
-# README by Danny
+# EVENTBRITE RSVP EXTENSION
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Development for this extension will continue after I'm done with my latest project :)
 
-Things you may want to cover:
+Current feature:
 
 * Ruby version
 
